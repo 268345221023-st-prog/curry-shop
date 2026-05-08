@@ -1,10 +1,9 @@
 {
   "name": "curry-shop",
   "version": "1.0.0",
-  "description": "ข้าวแกงกะหรี่ยายใจ - ใบงานที่ 7",
   "scripts": {
     "build": "npx @tailwindcss/cli -i ./src/input.css -o ./dist/output.css",
-    "watch": "npx @tailwindcss/cli -i ./src/input.css -o ./dist/output.css --watch"
+    "dev": "npx @tailwindcss/cli -i ./src/input.css -o ./dist/output.css --watch"
   },
   "devDependencies": {
     "tailwindcss": "^4.0.0",
