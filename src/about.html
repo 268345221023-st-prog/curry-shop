@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>เกี่ยวกับเรา · ข้าวแกงกะหรี่ยายใจ</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@400;600;700;900&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            curry:{50:'#FFFBEB',100:'#FEF3C7',300:'#F59E0B',400:'#D97706',500:'#B45309',600:'#92400E',800:'#6B2D00',900:'#451A03'},
+            saffron:'#F4A100',turmeric:'#E8870A',chili:'#B91C1C',cream:'#FDF8F0',
+          },
+          fontFamily:{serif:['"Noto Serif Thai"','serif'],sans:['Sarabun','sans-serif']}
+        }
+      }
+    }
+  </script>
+  <style>
+    *{font-family:'Sarabun',sans-serif;}
+    h1,h2,h3,.heading{font-family:'Noto Serif Thai',serif;}
+    .nav-link.active{color:#F4A100;border-bottom:2px solid #F4A100;}
+    .modal-wrap{display:none;position:fixed;inset:0;background:rgba(30,10,0,.75);z-index:999;align-items:center;justify-content:center;backdrop-filter:blur(6px);}
+    .modal-wrap.open{display:flex;}
+    .modal-inner{animation:popIn .3s cubic-bezier(.34,1.56,.64,1);}
+    @keyframes popIn{from{opacity:0;transform:scale(.88);}to{opacity:1;transform:scale(1);}}
+    #mob-menu{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+    #mob-menu.open{max-height:360px;}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+    body{animation:fadeUp .5s ease;}
+    .spice-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#F4A100;margin:0 3px;}
+    .timeline-line::before{content:'';position:absolute;left:20px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,#F4A100,#B45309);}
+  </style>
+</head>
+<body class="bg-cream text-curry-900 min-h-screen">
+
+<!-- NAVBAR -->
+<nav class="bg-curry-900 text-white sticky top-0 z-50 shadow-2xl">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="flex items-center justify-between h-16">
+      <a href="index.html" class="flex items-center gap-2.5">
+        <span class="text-2xl">🍛</span>
+        <div>
+          <div class="heading font-bold text-saffron leading-none text-lg">ข้าวแกงกะหรี่</div>
+          <div class="text-xs text-curry-300 leading-none">ยายใจ · ต้นตำรับ 40 ปี</div>
+        </div>
+      </a>
+      <div class="hidden md:flex items-center gap-1 text-sm">
+        <a href="index.html"   class="nav-link px-4 py-2 hover:text-saffron transition-colors">หน้าหลัก</a>
+        <a href="menu.html"    class="nav-link px-4 py-2 hover:text-saffron transition-colors">เมนู</a>
+        <a href="about.html"   class="nav-link active px-4 py-2 hover:text-saffron transition-colors">เกี่ยวกับ</a>
+        <a href="contact.html" class="nav-link px-4 py-2 hover:text-saffron transition-colors">ติดต่อ</a>
+        <button onclick="openM('order')" class="ml-3 bg-saffron hover:bg-turmeric text-curry-900 font-bold px-5 py-2 rounded-full transition-all shadow-lg text-sm">สั่งอาหาร 🛒</button>
+      </div>
+      <button onclick="toggleMob()" class="md:hidden p-2 rounded-lg hover:bg-curry-800 transition-colors flex flex-col gap-1">
+        <span class="block w-5 h-0.5 bg-white"></span><span class="block w-5 h-0.5 bg-white"></span><span class="block w-5 h-0.5 bg-white"></span>
+      </button>
+    </div>
+    <div id="mob-menu">
+      <div class="border-t border-curry-800 py-2 space-y-0.5 pb-4">
+        <a href="index.html"   class="block px-4 py-2.5 text-sm rounded-lg hover:bg-curry-800 hover:text-saffron transition-colors">🏠 หน้าหลัก</a>
+        <a href="menu.html"    class="block px-4 py-2.5 text-sm rounded-lg hover:bg-curry-800 hover:text-saffron transition-colors">🍛 เมนู</a>
+        <a href="about.html"   class="block px-4 py-2.5 text-sm rounded-lg hover:bg-curry-800 hover:text-saffron transition-colors">📖 เกี่ยวกับ</a>
+        <a href="contact.html" class="block px-4 py-2.5 text-sm rounded-lg hover:bg-curry-800 hover:text-saffron transition-colors">📞 ติดต่อ</a>
+        <button onclick="openM('order')" class="block w-full text-left px-4 py-2.5 text-sm text-saffron font-bold hover:bg-curry-800 rounded-lg">🛒 สั่งอาหาร</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="bg-curry-900 text-white py-14 px-6 text-center">
+  <h1 class="heading text-5xl font-black text-saffron mb-2">เกี่ยวกับเรา</h1>
+  <p class="text-curry-300">ตำนานกะหรี่ยายใจ · ต้นตำรับแห่งอยุธยา</p>
+</div>
+
+<!-- STORY SECTION -->
+<section class="max-w-5xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-14 items-center">
+  <div>
+    <div class="flex items-center gap-2 mb-4">
+      <span class="spice-dot"></span><span class="spice-dot"></span><span class="spice-dot"></span>
+      <span class="text-curry-500 text-xs tracking-widest uppercase">ประวัติความเป็นมา</span>
+    </div>
+    <h2 class="heading text-4xl font-black text-curry-900 mb-5 leading-tight">จากครัวเล็กๆ<br/>สู่ตำนาน 40 ปี</h2>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      ยายใจเริ่มขายแกงกะหรี่ครั้งแรกในปี พ.ศ. 2527 บนแผงเล็กๆ ริมถนนศรีอยุธยา ด้วยสูตรที่สืบทอดมาจากยายของท่านซึ่งเรียนรู้มาจากพ่อครัวชาวอินเดียในสมัยก่อน
+    </p>
+    <p class="text-gray-600 leading-relaxed mb-4">
+      วันนี้แม้ยายใจจะล่วงลับไปแล้ว แต่ลูกหลานยังคงรักษาสูตรต้นตำรับไว้ทุกอย่าง ทั้งเครื่องเทศ 17 ชนิด กะทิสดที่คั้นเองทุกเช้า และไฟอ่อนๆ ที่ต้มนานหลายชั่วโมง
+    </p>
+    <p class="text-gray-600 leading-relaxed">
+      เราเชื่อว่าอาหารที่ดีต้องมาจากใจ ไม่ใช่แค่จากสูตร
+    </p>
+  </div>
+  <div class="flex items-center justify-center">
+    <div class="relative">
+      <div class="w-64 h-64 bg-gradient-to-br from-saffron/30 to-curry-300/20 rounded-full flex items-center justify-center text-[8rem]">👵</div>
+      <div class="absolute -bottom-4 -right-4 bg-curry-900 text-white text-xs font-black px-4 py-2 rounded-2xl shadow-xl">
+        <span class="text-saffron">2527</span> – ปัจจุบัน
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="bg-curry-50 py-16 px-6">
+  <div class="max-w-3xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="heading text-4xl font-black text-curry-900">ประวัติร้าน</h2>
+    </div>
+    <div class="relative timeline-line pl-16 space-y-10">
+      <div class="relative">
+        <div class="absolute left-[-52px] top-1 w-10 h-10 bg-saffron rounded-full flex items-center justify-center text-curry-900 font-black text-sm shadow-lg">2527</div>
+        <h3 class="heading text-lg font-black text-curry-900">เปิดร้านครั้งแรก</h3>
+        <p class="text-gray-500 text-sm mt-1">ยายใจเริ่มขายแกงกะหรี่บนแผงเล็กๆ ริมถนนศรีอยุธยา</p>
+      </div>
+      <div class="relative">
+        <div class="absolute left-[-52px] top-1 w-10 h-10 bg-saffron rounded-full flex items-center justify-center text-curry-900 font-black text-sm shadow-lg">2545</div>
+        <h3 class="heading text-lg font-black text-curry-900">ขยายเป็นร้านถาวร</h3>
+        <p class="text-gray-500 text-sm mt-1">ด้วยชื่อเสียงที่โด่งดัง ยายใจขยายเป็นร้านอาหารถาวร นั่งได้ 40 ที่นั่ง</p>
+      </div>
+      <div class="relative">
+        <div class="absolute left-[-52px] top-1 w-10 h-10 bg-curry-500 rounded-full flex items-center justify-center text-white font-black text-sm shadow-lg">2558</div>
+        <h3 class="heading text-lg font-black text-curry-900">รุ่นที่ 2 สืบทอดกิจการ</h3>
+        <p class="text-gray-500 text-sm mt-1">ลูกสาวยายใจรับช่วงต่อ รักษาสูตรต้นตำรับทุกอย่างไว้ครบถ้วน</p>
+      </div>
+      <div class="relative">
+        <div class="absolute left-[-52px] top-1 w-10 h-10 bg-chili rounded-full flex items-center justify-center text-white font-black text-xs shadow-lg">2567</div>
+        <h3 class="heading text-lg font-black text-curry-900">ออนไลน์และ Delivery</h3>
+        <p class="text-gray-500 text-sm mt-1">เปิดรับสั่งออนไลน์ ส่งถึงบ้านในรัศมี 5 กม. รับออเดอร์ทุกวัน</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="max-w-5xl mx-auto px-6 py-16">
+  <div class="text-center mb-12">
+    <h2 class="heading text-4xl font-black text-curry-900">ปรัชญาของเรา</h2>
+  </div>
+  <div class="grid sm:grid-cols-3 gap-6">
+    <div class="bg-white rounded-3xl p-8 text-center shadow-sm border border-curry-100 hover:shadow-md transition-shadow">
+      <div class="text-5xl mb-4">🌿</div>
+      <h3 class="heading text-xl font-black text-curry-900 mb-3">วัตถุดิบสด</h3>
+      <p class="text-gray-500 text-sm leading-relaxed">เครื่องเทศและผักสดทุกชนิด ซื้อจากตลาดทุกเช้า ไม่แช่แข็ง ไม่ค้างคืน</p>
+    </div>
+    <div class="bg-white rounded-3xl p-8 text-center shadow-sm border border-curry-100 hover:shadow-md transition-shadow">
+      <div class="text-5xl mb-4">🔥</div>
+      <h3 class="heading text-xl font-black text-curry-900 mb-3">ปรุงสดทุกวัน</h3>
+      <p class="text-gray-500 text-sm leading-relaxed">เริ่มต้มตี 4 ทุกวัน เพื่อให้น้ำแกงเข้มข้น พร้อมเสิร์ฟเวลา 7 โมงเช้า</p>
+    </div>
+    <div class="bg-white rounded-3xl p-8 text-center shadow-sm border border-curry-100 hover:shadow-md transition-shadow">
+      <div class="text-5xl mb-4">❤️</div>
+      <h3 class="heading text-xl font-black text-curry-900 mb-3">ทำด้วยใจ</h3>
+      <p class="text-gray-500 text-sm leading-relaxed">ทุกจานปรุงด้วยความรัก รสชาติจะไม่เหมือนกันทุกวัน เพราะนั่นคือรสมือแท้จริง</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="bg-curry-900 py-14 px-6 text-center">
+  <h2 class="heading text-4xl font-black text-white mb-3">มาลองชิมด้วยตัวเอง</h2>
+  <p class="text-curry-300 mb-8">เปิดทุกวัน 07:00 – 15:00 น. หรือสั่ง Delivery ได้เลย</p>
+  <div class="flex flex-wrap justify-center gap-4">
+    <a href="menu.html" class="bg-saffron hover:bg-turmeric text-curry-900 font-bold px-8 py-3.5 rounded-full text-lg transition-all shadow-xl hover:scale-105">ดูเมนู →</a>
+    <a href="contact.html" class="border-2 border-white/30 hover:border-saffron text-white hover:text-saffron px-8 py-3.5 rounded-full font-semibold text-lg transition-all">ติดต่อร้าน</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-curry-900 text-curry-300 py-8 px-6 text-center border-t border-curry-800">
+  <p class="heading text-saffron font-black text-lg mb-1">🍛 ข้าวแกงกะหรี่ยายใจ</p>
+  <p class="text-sm">© 2567 · เปิดทุกวัน 07:00–15:00 · อยุธยา</p>
+  <p class="text-xs mt-1 text-curry-500">Tailwind CSS · Card · Menu · Modal · Mobile-First RWD · ใบงานที่ 7</p>
+</footer>
+
+<!-- MODAL: ORDER -->
+<div id="modal-order" class="modal-wrap" onclick="bgClose(event,'order')">
+  <div class="modal-inner bg-white rounded-3xl w-full max-w-sm mx-4 overflow-hidden shadow-2xl">
+    <div class="bg-curry-900 text-white p-6 flex justify-between items-center">
+      <div><h2 class="heading text-xl font-black text-saffron">สั่งอาหาร</h2><p class="text-curry-300 text-xs">ส่งถึงบ้าน · รัศมี 5 กม.</p></div>
+      <button onclick="closeM('order')" class="text-gray-400 hover:text-white text-2xl">✕</button>
+    </div>
+    <div class="p-6 space-y-4">
+      <div><label class="text-sm font-medium text-gray-700 mb-1 block">ชื่อ</label><input type="text" placeholder="ชื่อผู้สั่ง" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-saffron"/></div>
+      <div><label class="text-sm font-medium text-gray-700 mb-1 block">เบอร์โทร</label><input type="tel" placeholder="0XX-XXX-XXXX" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-saffron"/></div>
+      <div><label class="text-sm font-medium text-gray-700 mb-1 block">รายการที่ต้องการ</label><textarea rows="3" placeholder="เช่น ข้าวแกงกะหรี่ไก่ x2..." class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-saffron resize-none"></textarea></div>
+      <button onclick="closeM('order');openM('thanks')" class="w-full bg-saffron hover:bg-turmeric text-curry-900 py-3 rounded-xl font-black text-base transition-all">ยืนยันคำสั่งซื้อ ✓</button>
+    </div>
+  </div>
+</div>
+<div id="modal-thanks" class="modal-wrap" onclick="bgClose(event,'thanks')">
+  <div class="modal-inner bg-white rounded-3xl w-full max-w-xs mx-4 p-8 text-center shadow-2xl">
+    <div class="text-7xl mb-4">🍛</div>
+    <h2 class="heading text-2xl font-black text-curry-900 mb-2">รับคำสั่งซื้อแล้ว!</h2>
+    <p class="text-gray-500 text-sm mb-6">เราจะโทรยืนยันภายใน 10 นาที 🙏</p>
+    <button onclick="closeM('thanks')" class="w-full bg-curry-900 hover:bg-saffron hover:text-curry-900 text-white py-3 rounded-full font-bold transition-all">ตกลง 👍</button>
+  </div>
+</div>
+
+<script>
+  function toggleMob(){document.getElementById('mob-menu').classList.toggle('open');}
+  function openM(id){document.querySelectorAll('.modal-wrap').forEach(m=>m.classList.remove('open'));document.getElementById('modal-'+id).classList.add('open');}
+  function closeM(id){document.getElementById('modal-'+id).classList.remove('open');}
+  function bgClose(e,id){if(e.target===document.getElementById('modal-'+id))closeM(id);}
+</script>
+</body>
+</html>

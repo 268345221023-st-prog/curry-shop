@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ติดต่อ · ข้าวแกงกะหรี่ยายใจ</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@400;600;700;900&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            curry:{50:'#FFFBEB',100:'#FEF3C7',300:'#F59E0B',400:'#D97706',500:'#B45309',600:'#92400E',800:'#6B2D00',900:'#451A03'},
+            saffron:'#F4A100',turmeric:'#E8870A',chili:'#B91C1C',cream:'#FDF8F0',
+          },
+          fontFamily:{serif:['"Noto Serif Thai"','serif'],sans:['Sarabun','sans-serif']}
+        }
+      }
+    }
+  </script>
+  <style>
+    *{font-family:'Sarabun',sans-serif;}
+    h1,h2,h3,.heading{font-family:'Noto Serif Thai',serif;}
+    .nav-link.active{color:#F4A100;border-bottom:2px solid #F4A100;}
+    .modal-wrap{display:none;position:fixed;inset:0;background:rgba(30,10,0,.75);z-index:999;align-items:center;justify-content:center;backdrop-filter:blur(6px);}
+    .modal-wrap.open{display:flex;}
+    .modal-inner{animation:popIn .3s cubic-bezier(.34,1.56,.64,1);}
+    @keyframes popIn{from{opacity:0;transform:scale(.88);}to{opacity:1;transform:scale(1);}}
+    #mob-menu{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+    #mob-menu.open{max-height:360px;}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+    body{animation:fadeUp .5s ease;}
+  </style>
+</head>
+<body class="bg-cream text-curry-900 min-h-screen">
+
+<!-- NAVBAR -->
+<nav class="bg-curry-900 text-white sticky top-0 z-50 shadow-2xl">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="flex items-center justify-between h-16">
+      <a href="index.html" class="flex items-center gap-2.5">
+        <span class="text-2xl">🍛</span>
+        <div>
+          <div class="heading font-bold text-saffron leading-none text-lg">ข้าวแกงกะหรี่</div>
+          <div class="text-xs text-curry-300 leading-none">ยายใจ · ต้นตำรับ 40 ปี</div>
+        </div>
+      </a>
+      <div class="hidden md:flex items-center gap-1 text-sm">
+        <a href="index.html"   class="nav-link px-4 py-2 hover:text-saffron transition-colors">หน้าหลัก</a>
+        <a href="menu.html"    class="nav-link px-4 py-2 hover:text-saffron transition-colors">เมนู</a>
+        <a href="about.html"   class="nav-link px-4 py-2 hover:text-saffron transition-colors">เกี่ยวกับ</a>
+        <a href="contact.html" class="nav-link active px-4 py-2 hover:text-saffron transition-colors">ติดต่อ</a>
+        <button onclick="openM('order')" class="ml-3 bg-saffron hover:bg-turmeric text-curry-900 font-bold px-5 py-2 rounded-full transition-all shadow-lg text-sm">สั่งอาหาร 🛒</button>
+      </div>
+      <button onclick="toggleMob()" class="md:hidden p-2 rounded-lg hover:bg-curry-800 transition-colors flex flex-col gap-1">
+        <span class="block w-5 h-0.5 bg-white"></span><span class="block w-5 h-0.5 bg-white"></span><span class="block w-5 h-0.5 bg-white"></span>
+      </button>
+    </div>
+    <div id="mob-menu">
+      <div class="border-t border-curry-800 py-2 space-y-0.5 pb-4">
+        <a href="index.html"   class="block px-4 py-2.5 text-sm rounded-lg hover:bg-curry-800 hover:text-saffron transition-colors">🏠 หน้าหลัก</a>
+        <a href="menu.html"    class="block px-4 py-2.5 text-sm rounded-lg hover:bg-curry-800 hover:text-saffron transition-colors">🍛 เมนู</a>
+        <a href="about.html"   class="block px-4 py-2.5 text-sm rounded-lg hover:bg-curry-800 hover:text-saffron transition-colors">📖 เกี่ยวกับ</a>
+        <a href="contact.html" class="block px-4 py-2.5 text-sm rounded-lg hover:bg-curry-800 hover:text-saffron transition-colors">📞 ติดต่อ</a>
+        <button onclick="openM('order')" class="block w-full text-left px-4 py-2.5 text-sm text-saffron font-bold hover:bg-curry-800 rounded-lg">🛒 สั่งอาหาร</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="bg-curry-900 text-white py-14 px-6 text-center">
+  <h1 class="heading text-5xl font-black text-saffron mb-2">ติดต่อเรา</h1>
+  <p class="text-curry-300">เปิดทุกวัน ไม่เว้นวันหยุด · อยุธยา</p>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="max-w-5xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-12">
+
+  <!-- Info -->
+  <div>
+    <h2 class="heading text-2xl font-black text-curry-900 mb-6">ข้อมูลร้าน</h2>
+    <div class="space-y-5">
+      <div class="flex gap-4 items-start">
+        <span class="text-3xl mt-0.5">📍</span>
+        <div>
+          <p class="font-semibold text-curry-900">ที่ตั้ง</p>
+          <p class="text-gray-500 text-sm">88 ถนนศรีอยุธยา ตำบลประตูชัย<br/>อยุธยา 13000</p>
+        </div>
+      </div>
+      <div class="flex gap-4 items-start">
+        <span class="text-3xl">🕗</span>
+        <div>
+          <p class="font-semibold text-curry-900">เวลาเปิด-ปิด</p>
+          <p class="text-gray-500 text-sm">ทุกวัน 07:00 – 15:00 น.</p>
+          <p class="text-xs text-red-500 mt-1">⚠️ บางวันขายหมดก่อนเวลา!</p>
+        </div>
+      </div>
+      <div class="flex gap-4 items-start">
+        <span class="text-3xl">📞</span>
+        <div>
+          <p class="font-semibold text-curry-900">โทรศัพท์</p>
+          <p class="text-gray-500 text-sm">035-XXX-XXX</p>
+          <p class="text-gray-500 text-sm">089-XXX-XXXX (LINE)</p>
+        </div>
+      </div>
+      <div class="flex gap-4 items-start">
+        <span class="text-3xl">🛵</span>
+        <div>
+          <p class="font-semibold text-curry-900">บริการส่งอาหาร</p>
+          <p class="text-gray-500 text-sm">รัศมี 5 กม. · ขั้นต่ำ ฿100<br/>ค่าส่ง ฿20-40 ตามระยะทาง</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8 flex gap-3 flex-wrap">
+      <a class="bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-full text-sm font-semibold transition-colors cursor-pointer">📲 LINE OA</a>
+      <a class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-full text-sm font-semibold transition-colors cursor-pointer">Facebook</a>
+      <a class="bg-curry-500 hover:bg-curry-600 text-white px-5 py-2 rounded-full text-sm font-semibold transition-colors cursor-pointer">🛵 GrabFood</a>
+    </div>
+
+    <!-- Map Placeholder -->
+    <div class="mt-8 bg-curry-100 rounded-2xl h-48 flex items-center justify-center border-2 border-dashed border-curry-300">
+      <div class="text-center">
+        <div class="text-4xl mb-2">🗺️</div>
+        <p class="text-curry-600 text-sm font-semibold">แผนที่ร้าน</p>
+        <p class="text-curry-400 text-xs">ถ.ศรีอยุธยา · อยุธยา 13000</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Form -->
+  <div class="bg-white rounded-3xl shadow-xl p-8">
+    <h2 class="heading text-xl font-black text-curry-900 mb-5">สั่งจอง / สอบถาม</h2>
+    <div class="space-y-4">
+      <div>
+        <label class="text-sm font-medium text-gray-700 mb-1 block">ชื่อของคุณ</label>
+        <input type="text" placeholder="ชื่อ-นามสกุล" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-saffron"/>
+      </div>
+      <div>
+        <label class="text-sm font-medium text-gray-700 mb-1 block">เบอร์โทร / LINE</label>
+        <input type="tel" placeholder="0XX-XXX-XXXX" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-saffron"/>
+      </div>
+      <div>
+        <label class="text-sm font-medium text-gray-700 mb-1 block">ต้องการ</label>
+        <select class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-saffron bg-white">
+          <option>สอบถามเมนู</option>
+          <option>จองล่วงหน้า (ปริมาณมาก)</option>
+          <option>สั่งจัดเลี้ยง / Catering</option>
+          <option>ข้อเสนอแนะ</option>
+        </select>
+      </div>
+      <div>
+        <label class="text-sm font-medium text-gray-700 mb-1 block">ข้อความ</label>
+        <textarea rows="3" placeholder="พิมพ์ข้อความ..." class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-saffron resize-none"></textarea>
+      </div>
+      <button onclick="openM('thanks')" class="w-full bg-curry-900 hover:bg-saffron hover:text-curry-900 text-white py-3 rounded-xl font-bold transition-all text-base">
+        ส่งข้อความ →
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="bg-curry-900 text-curry-300 py-8 px-6 text-center border-t border-curry-800">
+  <p class="heading text-saffron font-black text-lg mb-1">🍛 ข้าวแกงกะหรี่ยายใจ</p>
+  <p class="text-sm">© 2567 · เปิดทุกวัน 07:00–15:00 · อยุธยา</p>
+  <p class="text-xs mt-1 text-curry-500">Tailwind CSS · Card · Menu · Modal · Mobile-First RWD · ใบงานที่ 7</p>
+</footer>
+
+<!-- MODAL: ORDER -->
+<div id="modal-order" class="modal-wrap" onclick="bgClose(event,'order')">
+  <div class="modal-inner bg-white rounded-3xl w-full max-w-sm mx-4 overflow-hidden shadow-2xl">
+    <div class="bg-curry-900 text-white p-6 flex justify-between items-center">
+      <div><h2 class="heading text-xl font-black text-saffron">สั่งอาหาร</h2><p class="text-curry-300 text-xs">ส่งถึงบ้าน · รัศมี 5 กม.</p></div>
+      <button onclick="closeM('order')" class="text-gray-400 hover:text-white text-2xl">✕</button>
+    </div>
+    <div class="p-6 space-y-4">
+      <div><label class="text-sm font-medium text-gray-700 mb-1 block">ชื่อ</label><input type="text" placeholder="ชื่อผู้สั่ง" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-saffron"/></div>
+      <div><label class="text-sm font-medium text-gray-700 mb-1 block">เบอร์โทร</label><input type="tel" placeholder="0XX-XXX-XXXX" class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-saffron"/></div>
+      <div><label class="text-sm font-medium text-gray-700 mb-1 block">รายการที่ต้องการ</label><textarea rows="3" placeholder="เช่น ข้าวแกงกะหรี่ไก่ x2..." class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-saffron resize-none"></textarea></div>
+      <button onclick="closeM('order');openM('thanks')" class="w-full bg-saffron hover:bg-turmeric text-curry-900 py-3 rounded-xl font-black text-base transition-all">ยืนยันคำสั่งซื้อ ✓</button>
+    </div>
+  </div>
+</div>
+<div id="modal-thanks" class="modal-wrap" onclick="bgClose(event,'thanks')">
+  <div class="modal-inner bg-white rounded-3xl w-full max-w-xs mx-4 p-8 text-center shadow-2xl">
+    <div class="text-7xl mb-4">🍛</div>
+    <h2 class="heading text-2xl font-black text-curry-900 mb-2">รับข้อความแล้ว!</h2>
+    <p class="text-gray-500 text-sm mb-6">เราจะติดต่อกลับภายใน 24 ชั่วโมง 🙏</p>
+    <button onclick="closeM('thanks')" class="w-full bg-curry-900 hover:bg-saffron hover:text-curry-900 text-white py-3 rounded-full font-bold transition-all">ตกลง 👍</button>
+  </div>
+</div>
+
+<script>
+  function toggleMob(){document.getElementById('mob-menu').classList.toggle('open');}
+  function openM(id){document.querySelectorAll('.modal-wrap').forEach(m=>m.classList.remove('open'));document.getElementById('modal-'+id).classList.add('open');}
+  function closeM(id){document.getElementById('modal-'+id).classList.remove('open');}
+  function bgClose(e,id){if(e.target===document.getElementById('modal-'+id))closeM(id);}
+</script>
+</body>
+</html>
